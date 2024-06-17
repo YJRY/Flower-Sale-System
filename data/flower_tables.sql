@@ -1,7 +1,7 @@
-﻿--  取消自动提交
-set @@session.autocommit = false;
+--  取消自动提交
+SET @@session.autocommit = false;
 
-use flowerweb;
+USE flowerweb;
 -- ----------------------------
 -- 用户信息表
 -- ----------------------------
@@ -30,7 +30,7 @@ INSERT INTO flowerweb.users (UserId, UserName, TrueName, UserPassword, UserSex, 
 VALUES (1, 'admin', '管理员', '123456', '男', 24, '123123@qq.com', '18812345678', '北京林业大学', '', '1',
         '2018-04-02 11:49:19', '1');
 
-commit;
+COMMIT;
 -- ----------------------------
 -- 商品信息表
 -- ----------------------------
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `goods`
 
 -- todo 新增商品信息
 
-commit;
+COMMIT;
 
 -- ----------------------------
 -- 网站全局信息表
@@ -66,9 +66,14 @@ CREATE TABLE IF NOT EXISTS `globaldescription`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='网站全局信息表';
 
--- todo 新增网站全局信息
+-- 新增网站全局信息
+INSERT INTO globaldescription (BrandStory, CareDescription, TransDescription, ChangeDescription)
+VALUES ('每一朵花都有自己的语言，能够传递出独特的情感和故事。因此，法兰沃不仅是一家花店，更是一个传递美好的使者。我们希望通过我们的努力，让更多人能够感受到花朵带来的幸福和满足。',
+        '请将花朵放置在温度适宜（15-25℃）、湿度适中的室内环境中，避免阳光直射和空调直吹；请每天为花朵更换清洁的自来水，并剪掉花茎底部1-2厘米，以保持吸水通畅。',
+        '1、在您下单后，我们会在最短时间内为您安排发货；2、您可通过物流单号随时查询订单状态；3、请您在收货后尽快检查花朵状态，如有问题请及时联系。',
+        '如您在收到花朵后发现存在质量问题（如花朵枯萎、破损等），请在收到货物后24小时内联系我们，并提供相关照片作为凭证。我们将为您免费更换或退款。');
 
-commit;
+COMMIT;
 
 -- ----------------------------
 -- 订单信息表
@@ -90,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `orders`
   ROW_FORMAT = DYNAMIC COMMENT ='订单信息表';
 
 
-commit;
+COMMIT;
 
 -- ----------------------------
 -- 评论信息表
@@ -119,7 +124,19 @@ CREATE TABLE IF NOT EXISTS `flowers`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='鲜花信息表';
 
--- todo 新增鲜花信息
+-- 新增鲜花信息
+
+INSERT INTO flowers(FlowerName, FLowerCost, FlowerPrice, FlowerNumber, SoldNumber, SoldProfit)
+VALUES ('红玫瑰', 1, 10, 10000, 0, 0),
+       ('满天星', 2, 7, 10000, 0, 0),
+       ('百合', 3, 8, 10000, 0, 0),
+       ('紫玫瑰', 4, 6, 10000, 0, 0),
+       ('蓝玫瑰', 5, 13, 10000, 0, 0),
+       ('郁金香', 6, 20, 10000, 0, 0),
+       ('白玫瑰', 7, 16, 10000, 0, 0),
+       ('向日葵', 8, 15, 10000, 0, 0),
+       ('康乃馨', 9, 18, 10000, 0, 0),
+       ('玛利亚', 10, 30, 10000, 0, 0);
 
 -- ----------------------------
 -- 规格信息表
@@ -139,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `goodsizes`
     玛利亚 INT(11) UNSIGNED DEFAULT '0' NOT NULL COMMENT '玛利亚数量'
 ) ENGINE = InnoDB
   CHARACTER SET
-      = utf8 COMMENT = '系统角色表';
+      = utf8 COMMENT = '规格信息表';
 
 -- todo 新增规格信息
 
